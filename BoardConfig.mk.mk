@@ -1,0 +1,122 @@
+LOCAL_PATH := device/teclast/m89pro_p8y9
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := m89pro_p8y9
+
+# Platform
+TARGET_BOARD_PLATFORM := mt6797
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a15
+
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
+
+# Flags
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# Kernel
+TARGET_PREBUILT_KERNEL := device/teclast/m89pro_p8y9/kernel
+BOARD_MTK_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_MKBOOTIMG_ARGS := --pagesize 2048 --base 0x40078000 --kernel_offset 0x00008000 --ramdisk_offset 0x08f88000 --second_offset 0x00e88000 --tags_offset 0x0df88000
+
+# Partitions
+BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+BOARD_CACHEIMAGE_PARTITION_SIZE := 2147483648
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 25715260416
+
+# USB Mounting
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
+
+# Recovery
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_FLASH_BLOCK_SIZE := 131072
+BOARD_HAS_NO_REAL_SDCARD := true
+
+# TWRP-Specific
+TW_NO_HAPTICS := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+TW_THEME := portrait_hdpi
+DEVICE_RESOLUTION := 1536x2048
+DEVICE_SCREEN_WIDTH := 1536
+DEVICE_SCREEN_HEIGHT := 2048
+#RECOVERY_TOUCHSCREEN_SWAP_XY := true
+#RECOVERY_TOUCHSCREEN_FLIP_Y := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TARGET_RECOVERY_PIXEL_FORMAT := "ABGR_8888"
+#BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
+BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := false
+TARGET_DISABLE_TRIPLE_BUFFERING := false
+TARGET_INCREASES_COLDBOOT_TIMEOUT := true
+#TW_DEFAULT_EXTERNAL_STORAGE := true
+TW_INTERNAL_STORAGE_PATH := "/data/media/0"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/sdcard"
+TW_EXTERNAL_STORAGE_MOUNT_POINT :="sdcard"
+RECOVERY_SDCARD_ON_DATA := true
+TW_INCLUDE_CRYPTO := true
+#TW_CRYPTO_USE_SYSTEM_VOLD := logd
+TW_CRYPTO_USE_SYSTEM_VOLD := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_DEFAULT_BRIGHTNESS := 128
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+TW_EXCLUDE_SUPERSU := true
+TW_DEFAULT_LANGUAGE := en
+TW_EXTRA_LANGUAGES := true
+
+# Very important for this device
+TW_IGNORE_MISC_WIPE_DATA := true
+TW_EXCLUDE_ENCRYPTED_BACKUPS := false
+TW_NO_EXFAT := false
+TW_INCLUDE_FUSE_EXFAT := true # exFAT FS Support
+TW_INCLUDE_FUSE_NTFS := true  # NTFS Support
+
+#Additional flags from lenovo A7010a
+TW_USE_TOOLBOX := true
+TW_FLASH_FROM_STORAGE := true
+TW_NEW_ION_HEAP := true
+TWHAVE_SELINUX := true
+
+# Screenshots
+TW_INCLUDE_FB2PNG := true
+
+# MTP
+# TW_EXCLUDE_MTP := true
+TW_MTP_DEVICE := "/dev/mtp_usb"
+
+# USB Storage
+TW_NO_USB_STORAGE := false
+
+# Logs
+# logd causes problems with system vold/
+# it tries to open /system/etc/event-log-tags and prevent
+# /system unmounting.
+TARGET_USES_LOGD := false
+TWRP_INCLUDE_LOGCAT := false
+
+# Neon
+ARCH_ARM_HAVE_NEON := true
+
+# Exclude APP
+TW_EXCLUDE_TWRPAPP := true
+
+# Backup data/media
+TW_BACKUP_DATA_MEDIA := true
